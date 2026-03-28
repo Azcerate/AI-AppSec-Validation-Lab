@@ -1,0 +1,133 @@
+[
+    {
+        "id": 1,
+        "name": "Customer Portal",
+        "type": "Application",
+        "owner": "Engineering",
+        "exposure": "Internet-facing",
+        "data_sensitivity": "High",
+        "environment": "Production",
+        "criticality": "High",
+        "data_type": "Sensitive",
+        "regulations": [
+            "NIST",
+            "ISO27001"
+        ],
+        "ip_address": "10.10.20.10",
+        "hostname": "customer-portal",
+        "open_ports": [
+            443
+        ],
+        "services": [
+            "https"
+        ],
+        "discovery_source": "Manual",
+        "last_seen": "2026-03-27 09:00:00",
+        "status": "Known"
+    },
+    {
+        "id": 2,
+        "name": "Internal Admin App",
+        "type": "Application",
+        "owner": "IT",
+        "exposure": "Internal",
+        "data_sensitivity": "Medium",
+        "environment": "Production",
+        "criticality": "Medium",
+        "data_type": "Internal",
+        "regulations": [
+            "NIST"
+        ],
+        "ip_address": "10.10.20.11",
+        "hostname": "admin-app",
+        "open_ports": [
+            443
+        ],
+        "services": [
+            "https"
+        ],
+        "discovery_source": "Manual",
+        "last_seen": "2026-03-27 09:00:00",
+        "status": "Known"
+    },
+    {
+        "id": 3,
+        "name": "web-prod-01",
+        "type": "Application",
+        "owner": "Engineering",
+        "exposure": "Internet-facing",
+        "data_sensitivity": "High",
+        "environment": "Production",
+        "criticality": "High",
+        "data_type": "Sensitive",
+        "regulations": [
+            "NIST",
+            "ISO27001"
+        ],
+        "ip_address": "10.10.20.15",
+        "hostname": "web-prod-01",
+        "open_ports": [
+            80,
+            443
+        ],
+        "services": [
+            "http",
+            "https"
+        ],
+        "discovery_source": "Nmap",
+        "last_seen": "2026-03-27 21:34:54",
+        "status": "Discovered"
+    },
+    {
+        "id": 4,
+        "name": "db-internal-01",
+        "type": "Database",
+        "owner": "IT",
+        "exposure": "Internal",
+        "data_sensitivity": "High",
+        "environment": "Development",
+        "criticality": "High",
+        "data_type": "Sensitive",
+        "regulations": [
+            "NIST"
+        ],
+        "ip_address": "10.10.20.25",
+        "hostname": "db-internal-01",
+        "open_ports": [
+            1433
+        ],
+        "services": [
+            "mssql"
+        ],
+        "discovery_source": "Nmap",
+        "last_seen": "2026-03-27 21:34:54",
+        "status": "Discovered"
+    },
+    {
+        "id": 5,
+        "name": "api-staging-01",
+        "type": "API",
+        "owner": "Engineering",
+        "exposure": "Internet-facing",
+        "data_sensitivity": "Medium",
+        "environment": "Staging",
+        "criticality": "Medium",
+        "data_type": "Internal",
+        "regulations": [
+            "OWASP"
+        ],
+        "ip_address": "10.10.20.35",
+        "hostname": "api-staging-01",
+        "open_ports": [
+            443,
+            8080
+        ],
+        "services": [
+            "https",
+            "http-alt"
+        ],
+        "discovery_source": "Nmap",
+        "last_seen": "2026-03-27 21:34:54",
+        "status": "Discovered"
+    }
+]

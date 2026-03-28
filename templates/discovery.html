@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="section-header">
+    <div>
+        <h2 class="section-title">Discovery & Asset Sync</h2>
+        <p class="section-subtitle">Automated network discovery feeding normalized assets into the inventory</p>
+    </div>
+</div>
+
+<div class="glass-card mb-4">
+    <div class="card-header-row">
+        <div>
+            <h3 class="panel-title">Discovery Control</h3>
+            <p class="panel-subtitle">Run approved discovery and synchronize results into asset inventory</p>
+        </div>
+
+        <form method="POST" action="/discovery/run">
+            <button type="submit" class="btn btn-primary">Run Discovery Sync</button>
+        </form>
+    </div>
+</div>
+
+<div class="dashboard-grid second-grid">
+    <div class="glass-card large-card">
+        <div class="card-header-row">
+            <div>
+                <h3 class="panel-title">Discovery Results</h3>
+                <p class="panel-subtitle">Latest discovered hosts and service fingerprints</p>
+            </div>
+        </div>
+
+        <table class="premium-table">
+            <thead>
+                <tr>
+                    <th>IP Address</th>
+                    <th>Hostname</th>
+                    <th>Open Ports</th>
+                    <th>Services</th>
+                    <th>OS</th>
+                    <th>Source</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in results %}
+                <tr>
+                    <td>{{ item.ip_address }}</td>
+                    <td>{{ item.hostname }}</td>
+                    <td>{{ item.open_ports | join(', ') }}</td>
+                    <td>{{ item.services | join(', ') }}</td>
+                    <td>{{ item.os }}</td>
+                    <td>{{ item.source }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="glass-card medium-card">
+        <div class="card-header-row">
+            <div>
+                <h3 class="panel-title">AI Discovery Insight</h3>
+                <p class="panel-subtitle">What this sync means</p>
+            </div>
+        </div>
+
+        <div class="insight-item">
+            <div class="insight-title">Automated inventory update</div>
+            <div class="insight-text">
+                Discovery results are normalized into asset records and merged into the inventory automatically.
+            </div>
+        </div>
+
+        <div class="insight-item">
+            <div class="insight-title">Expected classifications</div>
+            <div class="insight-text">
+                Web services become Applications, API-named hosts become APIs, and database services become Databases.
+            </div>
+        </div>
+
+        <div class="insight-item">
+            <div class="insight-title">Audit-backed workflow</div>
+            <div class="insight-text">
+                Every discovery run is written into the audit log for accountability and SOC 2 evidence.
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

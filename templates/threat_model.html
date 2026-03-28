@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">Threat Model</h2>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5>System Overview</h5>
+        <p>
+            Web application with user login, search functionality, backend database,
+            and AI-assisted validation logic.
+        </p>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h5>STRIDE Threats</h5>
+
+        <ul>
+            <li><b>Spoofing:</b> Unauthorized access through weak authentication controls</li>
+            <li><b>Tampering:</b> SQL injection could manipulate backend queries or records</li>
+            <li><b>Repudiation:</b> Insufficient logging may reduce accountability</li>
+            <li><b>Information Disclosure:</b> Sensitive data could be exposed through insecure queries</li>
+            <li><b>Denial of Service:</b> Malicious input may disrupt backend services</li>
+            <li><b>Elevation of Privilege:</b> Injection attacks may bypass access controls</li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

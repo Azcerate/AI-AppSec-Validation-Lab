@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="section-header">
+    <div>
+        <h2 class="section-title">Asset Risk Intelligence</h2>
+        <p class="section-subtitle">Exposure, business impact, and regulatory context across the application estate</p>
+    </div>
+</div>
+
+<div class="glass-card mb-4">
+    <div class="card-header-row">
+        <div>
+            <h3 class="panel-title">Asset Filters</h3>
+            <p class="panel-subtitle">Refine assets by environment, exposure, owner, and sensitivity</p>
+        </div>
+
+        <div class="filter-row">
+            <select class="mini-select">
+                <option>All Environments</option>
+                <option>Production</option>
+                <option>Development</option>
+                <option>Staging</option>
+            </select>
+
+            <select class="mini-select">
+                <option>All Exposure</option>
+                <option>Internet-facing</option>
+                <option>Internal</option>
+            </select>
+
+            <select class="mini-select">
+                <option>All Sensitivity</option>
+                <option>High</option>
+                <option>Medium</option>
+                <option>Low</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-grid second-grid">
+    <div class="glass-card large-card">
+        <div class="card-header-row">
+            <div>
+                <h3 class="panel-title">Asset Inventory</h3>
+                <p class="panel-subtitle">Core systems ranked by context and business exposure</p>
+            </div>
+        </div>
+
+        <table class="premium-table">
+            <thead>
+                <tr>
+                    <th>Asset Name</th>
+                    <th>Type</th>
+                    <th>Owner</th>
+                    <th>Exposure</th>
+                    <th>Environment</th>
+                    <th>Data Sensitivity</th>
+                    <th>Criticality</th>
+                    <th>Regulations</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for asset in assets %}
+                <tr class="{% if asset.exposure == 'Internet-facing' and asset.environment == 'Production' %}danger-row{% endif %}">
+                    <td class="asset-name">{{ asset.name }}</td>
+                    <td>{{ asset.type }}</td>
+                    <td>{{ asset.owner }}</td>
+
+                    <td>
+                        {% if asset.exposure == "Internet-facing" %}
+                            <span class="badge-severity critical-badge">Internet-facing</span>
+                        {% else %}
+                            <span class="badge-severity normal-badge">Internal</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if asset.environment == "Production" %}
+                            <span class="badge-flag breach-badge">Production</span>
+                        {% elif asset.environment == "Development" %}
+                            <span class="badge-flag normal-badge">Development</span>
+                        {% else %}
+                            <span class="badge-flag review-badge">{{ asset.environment }}</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if asset.data_sensitivity == "High" %}
+                            <span class="badge-severity critical-badge">High</span>
+                        {% elif asset.data_sensitivity == "Medium" %}
+                            <span class="badge-severity high-badge">Medium</span>
+                        {% else %}
+                            <span class="badge-severity normal-badge">Low</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if asset.criticality == "High" %}
+                            <span class="badge-severity critical-badge">High</span>
+                        {% elif asset.criticality == "Medium" %}
+                            <span class="badge-severity high-badge">Medium</span>
+                        {% else %}
+                            <span class="badge-severity normal-badge">Low</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if asset.regulations %}
+                            <div class="badge-row">
+                                {% for reg in asset.regulations %}
+                                    <span class="badge-flag review-badge">{{ reg }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <span class="badge-flag normal-badge">None</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="glass-card medium-card">
+        <div class="card-header-row">
+            <div>
+                <h3 class="panel-title">Asset Exposure Summary</h3>
+                <p class="panel-subtitle">Quick risk context for leadership review</p>
+            </div>
+        </div>
+
+        <div class="metric-stack">
+            <div class="metric-box">
+                <div class="detail-label">Internet-Facing Assets</div>
+                <div class="metric-value critical-text">1</div>
+            </div>
+
+            <div class="metric-box">
+                <div class="detail-label">Production Assets</div>
+                <div class="metric-value">2</div>
+            </div>
+
+            <div class="metric-box">
+                <div class="detail-label">High Sensitivity Assets</div>
+                <div class="metric-value warning-text">1</div>
+            </div>
+
+            <div class="metric-box">
+                <div class="detail-label">Regulated Assets</div>
+                <div class="metric-value">2</div>
+            </div>
+        </div>
+
+        <div class="insight-item">
+            <div class="insight-title">AI Asset Insight</div>
+            <div class="insight-text">
+                Internet-facing production assets with high data sensitivity should receive highest remediation priority when linked to open critical findings.
+            </div>
+            <div class="insight-action">
+                Recommended Action: Focus security validation and remediation efforts on externally exposed production systems first.
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

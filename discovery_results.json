@@ -1,0 +1,26 @@
+[
+    {
+        "ip_address": "10.10.20.15",
+        "hostname": "web-prod-01",
+        "open_ports": [80, 443],
+        "services": ["http", "https"],
+        "os": "Linux",
+        "source": "Nmap"
+    },
+    {
+        "ip_address": "10.10.20.25",
+        "hostname": "db-internal-01",
+        "open_ports": [1433],
+        "services": ["mssql"],
+        "os": "Windows Server",
+        "source": "Nmap"
+    },
+    {
+        "ip_address": "10.10.20.35",
+        "hostname": "api-staging-01",
+        "open_ports": [443, 8080],
+        "services": ["https", "http-alt"],
+        "os": "Linux",
+        "source": "Nmap"
+    }
+]

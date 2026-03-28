@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">Reports</h2>
+
+<div class="card shadow-sm mb-3">
+    <div class="card-body">
+        <h5>Latest Security Report</h5>
+        <p><b>Date:</b> March 27, 2026</p>
+        <p><b>Status:</b> <span class="text-danger">Blocked</span></p>
+
+        <button class="btn btn-primary">Download Report</button>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h5>Executive Summary</h5>
+        <p>
+            The application contains critical and high-risk vulnerabilities, including
+            injection risk and improper secret handling. Immediate remediation is required
+            before production deployment.
+        </p>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "title": "SQL Injection",
+        "severity": "Critical",
+        "component": "login form",
+        "asset_id": 1,
+        "status": "Open",
+        "explanation": "User input reaches the database query without proper parameterization.",
+        "remediation": "Use parameterized queries or prepared statements. Never build SQL queries directly from user input.",
+        "control_mapping": ["OWASP A03", "NIST Secure Coding"],
+        "regulatory_impact": "High",
+        "cvss_score": 9.8,
+        "cvss_vector": "AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    },
+    {
+        "id": 2,
+        "title": "Hardcoded Secret",
+        "severity": "High",
+        "component": "config.py",
+        "asset_id": 2,
+        "status": "Open",
+        "explanation": "A credential appears to be stored directly in code and may be exposed.",
+        "remediation": "Move secrets to environment variables or a secure secrets manager. Remove secrets from source code and rotate exposed credentials.",
+        "control_mapping": ["Secret Management", "NIST Credential Protection"],
+        "regulatory_impact": "Medium",
+        "cvss_score": 8.1,
+        "cvss_vector": "AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:L"
+    },
+    {
+        "id": 3,
+        "title": "Outdated Dependency",
+        "severity": "Medium",
+        "component": "requirements.txt",
+        "asset_id": 3,
+        "status": "Open",
+        "explanation": "A package version contains known vulnerabilities and should be updated.",
+        "remediation": "Upgrade the dependency to a secure version and verify compatibility through testing.",
+        "control_mapping": ["Dependency Management"],
+        "regulatory_impact": "Low",
+        "cvss_score": 5.6,
+        "cvss_vector": "AV:L/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:L"
+    }
+]

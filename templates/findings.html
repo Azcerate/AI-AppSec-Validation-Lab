@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="section-header">
+    <div>
+        <h2 class="section-title">Active Threats & Findings</h2>
+        <p class="section-subtitle">Prioritized findings with contextual risk, exploitability, ownership, and action status</p>
+    </div>
+</div>
+
+<div class="glass-card mb-4">
+    <div class="card-header-row">
+        <div>
+            <h3 class="panel-title">Filters</h3>
+            <p class="panel-subtitle">Refine findings by severity, priority, status, and asset</p>
+        </div>
+
+        <div class="filter-row">
+            <select class="mini-select">
+                <option>All Severity</option>
+                <option>Critical</option>
+                <option>High</option>
+                <option>Medium</option>
+                <option>Low</option>
+            </select>
+
+            <select class="mini-select">
+                <option>All Priority</option>
+                <option>Critical</option>
+                <option>High</option>
+                <option>Medium</option>
+                <option>Low</option>
+            </select>
+
+            <select class="mini-select">
+                <option>All Status</option>
+                <option>Open</option>
+                <option>In Progress</option>
+                <option>Resolved</option>
+                <option>Accepted Risk</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="glass-card">
+    <div class="card-header-row">
+        <div>
+            <h3 class="panel-title">Findings Queue</h3>
+            <p class="panel-subtitle">Click a finding to drill into detail and remediation guidance</p>
+        </div>
+    </div>
+
+    <table class="premium-table">
+        <thead>
+            <tr>
+                <th>Vulnerability</th>
+                <th>Severity</th>
+                <th>CVSS</th>
+                <th>Asset</th>
+                <th>Component</th>
+                <th>Risk Score</th>
+                <th>Priority</th>
+                <th>Exploitability</th>
+                <th>SLA</th>
+                <th>Owner</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for finding in findings %}
+            <tr class="{% if finding.priority == 'Critical' %}danger-row{% endif %}">
+                <td>
+                    <a href="/finding/{{ finding.id }}" class="finding-link">
+                        {{ finding.title }}
+                    </a>
+                </td>
+
+                <td>
+                    {% if finding.severity == "Critical" %}
+                        <span class="badge-severity critical-badge">Critical</span>
+                    {% elif finding.severity == "High" %}
+                        <span class="badge-severity high-badge">High</span>
+                    {% elif finding.severity == "Medium" %}
+                        <span class="badge-severity medium-badge">Medium</span>
+                    {% else %}
+                        <span class="badge-severity normal-badge">{{ finding.severity }}</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if finding.cvss_score >= 9.0 %}
+                        <span class="badge-risk critical-badge">{{ finding.cvss_score }}</span>
+                    {% elif finding.cvss_score >= 7.0 %}
+                        <span class="badge-risk high-badge">{{ finding.cvss_score }}</span>
+                    {% elif finding.cvss_score >= 4.0 %}
+                        <span class="badge-risk medium-badge">{{ finding.cvss_score }}</span>
+                    {% else %}
+                        <span class="badge-risk normal-badge">{{ finding.cvss_score }}</span>
+                    {% endif %}
+                </td>
+
+                <td>{{ finding.asset_name }}</td>
+                <td>{{ finding.component }}</td>
+
+                <td>
+                    {% if finding.risk_score >= 90 %}
+                        <span class="badge-risk critical-badge">{{ finding.risk_score }}</span>
+                    {% elif finding.risk_score >= 70 %}
+                        <span class="badge-risk high-badge">{{ finding.risk_score }}</span>
+                    {% elif finding.risk_score >= 50 %}
+                        <span class="badge-risk medium-badge">{{ finding.risk_score }}</span>
+                    {% else %}
+                        <span class="badge-risk normal-badge">{{ finding.risk_score }}</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if finding.priority == "Critical" %}
+                        <span class="badge-severity critical-badge">Critical</span>
+                    {% elif finding.priority == "High" %}
+                        <span class="badge-severity high-badge">High</span>
+                    {% elif finding.priority == "Medium" %}
+                        <span class="badge-severity medium-badge">Medium</span>
+                    {% else %}
+                        <span class="badge-severity normal-badge">{{ finding.priority }}</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if finding.severity == "Critical" %}
+                        <span class="badge-flag exploited-badge">Actively Exploitable</span>
+                    {% elif finding.severity == "High" %}
+                        <span class="badge-flag review-badge">Needs Review</span>
+                    {% else %}
+                        <span class="badge-flag normal-badge">Known Risk</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if finding.priority == "Critical" %}
+                        <span class="badge-flag breach-badge">SLA Breach</span>
+                    {% elif finding.priority == "High" %}
+                        <span class="badge-flag review-badge">2 Days</span>
+                    {% else %}
+                        <span class="badge-flag normal-badge">5 Days</span>
+                    {% endif %}
+                </td>
+
+                <td>{{ finding.owner if finding.owner else "Engineering" }}</td>
+
+                <td>
+                    {% if finding.status == "Open" %}
+                        <span class="badge-flag review-badge">Open</span>
+                    {% elif finding.status == "In Progress" %}
+                        <span class="badge-flag resolved-badge">In Progress</span>
+                    {% elif finding.status == "Resolved" %}
+                        <span class="badge-flag resolved-badge">Resolved</span>
+                    {% else %}
+                        <span class="badge-flag normal-badge">{{ finding.status }}</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

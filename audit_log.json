@@ -1,0 +1,90 @@
+[
+    {
+        "timestamp": "2026-03-27 22:00:11",
+        "user": "Anthony Saunders",
+        "action": "Compliance Reviewed",
+        "object": "Compliance Module",
+        "details": "User opened the compliance page",
+        "severity": "Info"
+    },
+    {
+        "timestamp": "2026-03-27 21:58:58",
+        "user": "Anthony Saunders",
+        "action": "Finding Viewed",
+        "object": "SQL Injection",
+        "details": "User opened finding detail for SQL Injection",
+        "severity": "Info"
+    },
+    {
+        "timestamp": "2026-03-27 21:34:54",
+        "user": "Anthony Saunders",
+        "action": "Discovery Scan Finished",
+        "object": "Approved Scope",
+        "details": "Discovery finished: 3 new assets, 0 updated assets",
+        "severity": "Medium"
+    },
+    {
+        "timestamp": "2026-03-27 21:34:54",
+        "user": "Anthony Saunders",
+        "action": "Discovery Sync Completed",
+        "object": "Asset Inventory",
+        "details": "Discovery sync completed: 3 new assets added, 0 existing assets updated",
+        "severity": "Medium"
+    },
+    {
+        "timestamp": "2026-03-27 21:34:54",
+        "user": "Anthony Saunders",
+        "action": "Discovery Scan Started",
+        "object": "Approved Scope",
+        "details": "Automated discovery scan initiated from platform dashboard",
+        "severity": "Medium"
+    },
+    {
+        "timestamp": "2026-03-27 20:48:16",
+        "user": "Anthony Saunders",
+        "action": "Reports Viewed",
+        "object": "Reports Module",
+        "details": "User opened the reports page",
+        "severity": "Info"
+    },
+    {
+        "timestamp": "2026-03-27 20:48:14",
+        "user": "Anthony Saunders",
+        "action": "Settings Viewed",
+        "object": "Settings Module",
+        "details": "User opened the settings page",
+        "severity": "Info"
+    },
+    {
+        "timestamp": "2026-03-27 20:45:18",
+        "user": "Anthony Saunders",
+        "action": "Settings Viewed",
+        "object": "Settings Module",
+        "details": "User opened the settings page",
+        "severity": "Info"
+    },
+    {
+        "timestamp": "2026-03-27 10:00:00",
+        "user": "Anthony Saunders",
+        "action": "User Login",
+        "object": "Platform",
+        "details": "User logged into DMCS Labs",
+        "severity": "Info"
+    },
+    {
+        "timestamp": "2026-03-27 10:05:00",
+        "user": "Anthony Saunders",
+        "action": "Finding Status Changed",
+        "object": "SQL Injection",
+        "details": "Status changed from Open to In Progress",
+        "severity": "High"
+    },
+    {
+        "timestamp": "2026-03-27 10:10:00",
+        "user": "Anthony Saunders",
+        "action": "Discovery Scan Started",
+        "object": "192.168.1.0/24",
+        "details": "Network discovery initiated",
+        "severity": "Medium"
+    }
+]
