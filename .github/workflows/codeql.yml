@@ -1,0 +1,43 @@
+# CodeQL static analysis (SAST). Results appear in the repo Security tab.
+# Docs: https://docs.github.com/code-security/code-scanning
+name: CodeQL
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: "27 4 * * 1"   # weekly, Monday 04:27 UTC
+
+permissions:
+  contents: read
+  security-events: write   # required to upload results to code scanning
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Add/remove languages to match the repo. CodeQL supports:
+        # python, javascript-typescript, java-kotlin, go, ruby, csharp, c-cpp, swift
+        language: [ "javascript-typescript" ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          queries: security-extended
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{ matrix.language }}"

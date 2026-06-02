@@ -4,3 +4,61 @@ venv/
 __pycache__/
 *.pyc
 *.log
+# ---- FoundryGuard fix-pack additions ----
+# ---- Secrets & local config (NEVER commit) ----
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.pfx
+*.p12
+secrets.*
+credentials.*
+*_secret*
+*apikey*
+*api_key*
+
+# ---- Runtime / generated security artifacts ----
+# These often contain real hostnames, findings, or tokens. Ship *.sample.json instead.
+audit_log.json
+findings.json
+assets.json
+discovery_results.json
+redteam_results.txt
+*.log
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ---- Node (for any JS tooling) ----
+node_modules/
+npm-debug.log*
+
+# ---- Editors / OS ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ---- SBOM / scan outputs (regenerated in CI) ----
+sbom.spdx.json
+sbom.cdx.json
+trivy-results.sarif
+gitleaks-report.json
